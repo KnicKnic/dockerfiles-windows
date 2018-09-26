@@ -1,5 +1,5 @@
 # escape=`
-FROM microsoft/windowsservercore:ltsc2016 AS downloader
+FROM microsoft/windowsservercore AS downloader
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 ENV KIBANA_VERSION="5.6.0" `
@@ -13,7 +13,7 @@ RUN Invoke-WebRequest "https://artifacts.elastic.co/downloads/kibana/kibana-$($e
     Move-Item c:/kibana-$($env:KIBANA_VERSION)-windows-x86 $env:KIBANA_HOME;
 
 # Kibana
-FROM microsoft/windowsservercore:ltsc2016
+FROM microsoft/windowsservercore
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop';"]
 
 ENV KIBANA_VERSION="5.6.0" `
